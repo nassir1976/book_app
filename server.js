@@ -8,9 +8,9 @@ require('dotenv').config();
 //setting up the app
 const app = express();
 const PORT = process.env.PORT || 3000;
+app.use(express.urlencoded({extended: true}));
+app.use(express.static('./public'));
 app.set('view engine', 'ejs');
-app.set('views','/views');
-// app.use(express.static('./public'));
 
 
 //routes
@@ -19,7 +19,9 @@ app.get('/',homeHandler);
 
 //route handlers
 function homeHandler(req, res){
-  res.status(200).render('index');
+  res.status(200).render('pages/index');
+
+
 }
 
 //listen to the port
