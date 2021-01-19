@@ -1,5 +1,5 @@
 .nav-bar{
-  padding: 0 40px 0 40px;
+  padding: 20px 40px 20px 40px;
   background-color: black;
   display: flex;
   flex-direction: row;
@@ -9,6 +9,7 @@
 }
 
 .search-header{
+  padding: 20px;
   display:flex;
   align-items: center;
   justify-content: center;

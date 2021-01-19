@@ -53,16 +53,17 @@ function findBook(req, res) {
     url = `https://www.googleapis.com/books/v1/volumes?q=${req.body.search}:${req.body.keyword}`;
 
   }
-  console.log(url);
+  
   superagent.get(url)
     .then(data => {
+      console.log('data >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', data);
 
       let books = data.body.items.map((value) => {
         return new Book(value);
       });
       res.render('pages/searches/show', { books: books });
 
-      console.log(books);
+      
 
     }).catch(error => console.log(error));
 
