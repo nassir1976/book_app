@@ -102,10 +102,13 @@ function findBook(req, res) {
 //===================== Constructors ============================
 
 function Book(data) {
+  console.log(data);
   this.authors = data.volumeInfo.authors;
   this.title = data.volumeInfo.title;
   this.description = data.volumeInfo.description;
-  this.img_url = `https://i.imgur.com/J5LVHEL.jpg`;
+  // this.img_url = data.volumeInfo.imageLinks? data.volumeInfo.imageLinks.smallThumbnail:`https://i.imgur.com/J5LVHEL.jpg`;
+  this.img_url = data.volumeInfo.imageLinks.smallThumbnail || `https://i.imgur.com/J5LVHEL.jpg`;
+
 }
 
 //listen to the port
