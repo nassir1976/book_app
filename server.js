@@ -14,31 +14,29 @@ app.use(express.static('./public'));
 app.use(express.urlencoded({ extended: true }));
 
 app.set('view engine', 'ejs');
+app.get('/new', newSearch);
+app.get('/', homeHandler);
+app.get('/searches/show', formPage);
+app.get('/serches/show', search);
+
 
 //route handlers
 
-app.get('/', homeHandler);
-app.get('searches/new', newSearch);
-// app.get('/searches/show', formPage);
-app.post('/serches', findBook);
-
-
-
-// function formPage(req, res) {
-//   res.render('pages/searches/show');
-// }
+function formPage(req, res) {
+  res.render('pages/searches/new.ejs');
+}
 
 function homeHandler(req, res) {
   res.status(200).render('pages/index');
 }
 function newSearch(req, res) {
-  res.render('pages/searches/new');
+  res.status(200).render('pages/searches/new.ejs');
 }
 
 
 
-function findBook(req, res) {
-  let url = `https://www.googleapis.com/books/v1/volumes?q=quilting`;
+function search(req, res) {
+  let url = `https://www.googleapis.com/books/v1/volumes?q=quilting`
   if (req.body.search === 'title') {
     url = `https://www.googleapis.com/books/v1/volumes?q=${req.body.search}:${req.body.keyword}`;
 
@@ -50,7 +48,7 @@ function findBook(req, res) {
   superagent.get(url)
     .then(data => {
       let books = data.body.items.map((value) => {
-        return new BOOK(value);
+        return new Books(value);
       });
       res.render('pages/searches/show', { books: books });
 
@@ -59,12 +57,11 @@ function findBook(req, res) {
 }
 
 
-function BOOK(data) {
+function Books(data) {
   this.authors = data.volumeInfo.authors;
-  this.title = data.voluneInfo.title;
-  this.description = data.voluneInfo.description;
-  // this.image_url = data.voluneInfo.imageLinks.thumbnail;
-  this.image_url= "https://i.imgur.com/J5LVHEL.jpg";
+  this.title = data.volumeInfo.title;
+  this.description = data.volumeInfo.description;
+  this.image_url = data.volumeInfo.imageLinks.thumbnail;
 }
 
 //listen to the port
