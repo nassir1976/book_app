@@ -40,5 +40,5 @@ Start time: 11:00am
 Finish time:   still working on it 
 Actual time needed to complete: 
 
-### Credits and Collaborations
+ ### Credits and Collaborations
 
