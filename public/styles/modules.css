@@ -1,0 +1,24 @@
+.nav-bar{
+  padding: 0 40px 0 40px;
+  background-color: black;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.search-header{
+  display:flex;
+}
+
+h1{
+  color: white;
+  font-size: 42px;
+}
+
+#hamburger{
+  height: auto;
+ 
+
+}
