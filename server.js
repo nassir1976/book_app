@@ -22,7 +22,7 @@ app.get('/search', newSearch);
 // app.get('/searches/show', formPage);
 
 // call back function
-app.get('/searches', findBook);
+app.post('/searches', findBook);
 
 
 //route handlers
