@@ -15,14 +15,16 @@ app.use(express.urlencoded({ extended: true }));
 
 app.set('view engine', 'ejs');
 
-//route handlers
+//=========================Routes==============================
 
 app.get('/', homeHandler);
-app.get('searches/new', newSearch);
+app.get('/search', newSearch);
 // app.get('/searches/show', formPage);
-app.post('/serches', findBook);
+app.get('/searches', findBook);
 
 
+
+//==========================Route Handelers========================
 
 // function formPage(req, res) {
 //   res.render('pages/searches/show');
@@ -38,7 +40,8 @@ function newSearch(req, res) {
 
 
 function findBook(req, res) {
-  let url = `https://www.googleapis.com/books/v1/volumes?q=quilting`;
+  let url = 'https://www.googleapis.com/books/v1/volumes?q=quilting';
+  
   if (req.body.search === 'title') {
     url = `https://www.googleapis.com/books/v1/volumes?q=${req.body.search}:${req.body.keyword}`;
 
@@ -47,6 +50,7 @@ function findBook(req, res) {
     url = `https://www.googleapis.com/books/v1/volumes?q=${req.body.search}:${req.body.keyword}`;
 
   }
+  console.log(url);
   superagent.get(url)
     .then(data => {
       let books = data.body.items.map((value) => {
@@ -54,15 +58,23 @@ function findBook(req, res) {
       });
       res.render('pages/searches/show', { books: books });
 
+      console.log(books);
+
     }).catch(error => console.log(error));
+
+  
+
 
 }
 
 
+
+//===================== Constructors ============================
+
 function BOOK(data) {
   this.authors = data.volumeInfo.authors;
-  this.title = data.voluneInfo.title;
-  this.description = data.voluneInfo.description;
+  this.title = data.volumeInfo.title;
+  this.description = data.volumeInfo.description;
   // this.image_url = data.voluneInfo.imageLinks.thumbnail;
   this.image_url= "https://i.imgur.com/J5LVHEL.jpg";
 }
