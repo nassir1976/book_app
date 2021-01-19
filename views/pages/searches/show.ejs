@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><book-store></book-store></title>
+  <link rel="stylesheet" href="../styles/reset.css">
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="../styles/layout.css">
+  <link rel="stylesheet" href="../styles/modules.css">
 </head>
 <header>
   <div class="nav-bar">
@@ -17,29 +21,13 @@
   <main>
     <div class="search-header">
       <h2>Search Results</h2>
-    <!-- </div>
-    <div class="result-container">
-
-      <img src="https://source.unsplash.com/WLUHO9A_xik/900x600" alt="Book Image">
-
-       
-
-      <h3>title</h3>
-      <h4>author</h4>
-      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit quam voluptatem magnam dolore perspiciatis ut ipsa. Animi, atque eveniet. Maiores incidunt nisi voluptatum, non libero consequatur? Non mollitia perspiciatis dolor?</p> -->
-
-    <!-- </div>  -->
+    
 
     <div class="result-container">
-      <ul>
-        
-      </ul>
-
-    </div>
-
     <ul>
       <% books.forEach( value =>{ %>
         <!-- <li id = "<%=value.title %>"> <%= value.title %>/<%= value.author%> </li> -->
+          <!-- <img src="<%=value.img_url%>" alt="<%=value.title%>"> -->
           <img src="<%=value.img_url%>" alt="<%=value.title%>">
          <h3><%=value.title%></h3>
          <h4><%=value.authors%></h4>
