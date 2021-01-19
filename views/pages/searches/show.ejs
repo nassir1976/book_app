@@ -19,12 +19,24 @@
       <h2>Search Results</h2>
     </div>
     <div class="result-container">
-       <img src="https://source.unsplash.com/WLUHO9A_xik/500x900" alt="Book Image">
+
+      <img src="https://source.unsplash.com/WLUHO9A_xik/900x600" alt="Book Image">
+
+       
+
       <h3>title</h3>
       <h4>author</h4>
       <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit quam voluptatem magnam dolore perspiciatis ut ipsa. Animi, atque eveniet. Maiores incidunt nisi voluptatum, non libero consequatur? Non mollitia perspiciatis dolor?</p> -->
 
     </div>
+
+    <div class="result-container">
+      <ul>
+        
+      </ul>
+
+    </div>
+
     <ul>
       <% books.forEach( value =>{ %>
         <li id = "<%=value.title %>"> <%= value.title %>/<%= value.author%> </li>
@@ -34,6 +46,7 @@
          <p><%=value.description%></p>
       <% }) %>
     </ul>
+
   </main>
 
 </body>
