@@ -20,9 +20,12 @@ app.set('view engine', 'ejs');
 app.get('/', homeHandler);
 app.get('/search', newSearch);
 // app.get('/searches/show', formPage);
+
+// call back function
 app.get('/searches', findBook);
 
 
+//route handlers
 
 //==========================Route Handelers========================
 
@@ -34,14 +37,14 @@ function homeHandler(req, res) {
   res.status(200).render('pages/index');
 }
 function newSearch(req, res) {
-  res.render('pages/searches/new');
+  res.status(200).render('pages/searches/new.ejs');
 }
 
 
 
 function findBook(req, res) {
   let url = 'https://www.googleapis.com/books/v1/volumes?q=quilting';
-  
+
   if (req.body.search === 'title') {
     url = `https://www.googleapis.com/books/v1/volumes?q=${req.body.search}:${req.body.keyword}`;
 
@@ -53,8 +56,9 @@ function findBook(req, res) {
   console.log(url);
   superagent.get(url)
     .then(data => {
+
       let books = data.body.items.map((value) => {
-        return new BOOK(value);
+        return new Book(value);
       });
       res.render('pages/searches/show', { books: books });
 
@@ -62,7 +66,7 @@ function findBook(req, res) {
 
     }).catch(error => console.log(error));
 
-  
+
 
 
 }
@@ -71,7 +75,7 @@ function findBook(req, res) {
 
 //===================== Constructors ============================
 
-function BOOK(data) {
+function Book(data) {
   this.authors = data.volumeInfo.authors;
   this.title = data.volumeInfo.title;
   this.description = data.volumeInfo.description;
@@ -80,8 +84,8 @@ function BOOK(data) {
 }
 
 //listen to the port
-// const   handleError(error, res)=>{
-//   response.render('pages/error', {error:error})
+// function handleError(res){
+// return res.status(500).render ('page/error');
 // }
 app.get('/*', (req, res) => res.status(404).send('this route does not exist'));
 
