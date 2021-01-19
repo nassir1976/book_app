@@ -18,11 +18,12 @@ app.set('view engine', 'ejs');
 //=========================Routes==============================
 
 app.get('/', homeHandler);
+// form
 app.get('/search', newSearch);
-// app.get('/searches/show', formPage);
-
 // call back function
 app.post('/searches', findBook);
+
+
 
 
 //route handlers
@@ -42,6 +43,32 @@ function newSearch(req, res) {
 
 
 
+// function findBook(req, res) {
+
+//   let url = 'https://www.googleapis.com/books/v1/volumes?q=quilting';
+
+
+//   if (req.body.search[0] === 'title') {
+//     url = `https://www.googleapis.com/books/v1/volumes?q=${req.body.search}`;
+
+//   } else if (req.body.search[0] === 'author') {
+
+//     url = `https://www.googleapis.com/books/v1/volumes?q=${req.body.search}`;
+
+//   }
+//   console.log(url);
+//   superagent.get(url)
+//     .then(data => {
+
+//       let books = data.body.items.map((value) => {
+//         return new Book(value);
+//       });
+//       res.render('pages/searches/show', { books: books });
+
+//       console.log(books);
+
+//     }).catch(error => console.log(error));
+// }
 function findBook(req, res) {
   let url = 'https://www.googleapis.com/books/v1/volumes?q=quilting';
 
@@ -53,16 +80,16 @@ function findBook(req, res) {
     url = `https://www.googleapis.com/books/v1/volumes?q=${req.body.search}:${req.body.keyword}`;
 
   }
-  console.log(url);
   superagent.get(url)
     .then(data => {
+      console.log('data >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', data);
 
       let books = data.body.items.map((value) => {
         return new Book(value);
       });
       res.render('pages/searches/show', { books: books });
 
-      console.log(books);
+
 
     }).catch(error => console.log(error));
 
@@ -72,15 +99,13 @@ function findBook(req, res) {
 }
 
 
-
 //===================== Constructors ============================
 
 function Book(data) {
   this.authors = data.volumeInfo.authors;
   this.title = data.volumeInfo.title;
   this.description = data.volumeInfo.description;
-  // this.image_url = data.voluneInfo.imageLinks.thumbnail;
-  this.image_url= "https://i.imgur.com/J5LVHEL.jpg";
+  this.img_url = `https://i.imgur.com/J5LVHEL.jpg`;
 }
 
 //listen to the port
