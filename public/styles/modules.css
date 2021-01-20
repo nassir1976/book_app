@@ -1,3 +1,11 @@
+#main-contain{
+  max-width: 1000px;
+  margin: auto;
+  
+}
+
+
+
 .nav-bar{
   padding: 20px 40px 20px 40px;
   background-color: black;
@@ -16,15 +24,71 @@
   background-color: #606060;
 }
 
-.result-container{
-  
-  padding: 20px;
-  display: flex;
+.book-contain{
+  width: 80%;
+  max-width: 600px;
+  margin: auto;
+  display:flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
+}
+
+.book-image{
+  width: 425px;
+  height: 680px;
+  border: 10px solid white;
+  margin-bottom: 25px;
+  
+}
+
+
+
+
+.result-container{
+  border: 3px solid rgb(153, 153, 153);
+  border-radius: 8px;
+  padding: 40px 0 130px 0;
   margin: 40px auto 40px auto;
-  width: 700px;
+  width: 80%;
   background-color: #e1e1e1;
+  box-shadow: 0px 3px 13px -2px rgba(0,0,0,0.45);
+}
+
+#book-title{
+  color: white;
+  font-size: 30px;
+  text-shadow: 2px 2px 4px #201f1f;
+  margin-bottom: 15px;
+}
+
+#book-author{
+  font-size: 25px;
+  font-style: italic;
+  margin-bottom: 30px;
+}
+
+#book-descrip{
+  position: relative;
+  max-height: 12.8rem;
+  overflow: hidden;
+  padding-right: 1rem;
+
+}
+
+#book-descrip::before{
+  position: absolute;
+  content: "...";
+  inset-block-end: 0; /* "bottom" */
+  inset-inline-end: 0; /* "right" */
+}
+
+#book-desrip::after{
+  content: "";
+  position: absolute;
+  inset-inline-end: 0; /* "right" */
+  width: 1rem;
+  height: 1rem;
+  background: white;
 }
 
 h1{

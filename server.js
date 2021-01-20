@@ -82,7 +82,7 @@ function findBook(req, res) {
   }
   superagent.get(url)
     .then(data => {
-      console.log('data >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', data);
+      
 
       let books = data.body.items.map((value) => {
         return new Book(value);
