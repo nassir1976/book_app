@@ -50,8 +50,9 @@ function findBook(req, res) {
   superagent.get(url)
 
     .then(data => {
-      // const temp1 = data.body.items;
+
       console.log('data >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', data);
+
 
       let books = data.body.items.map(value => {
         return new Book(value);
