@@ -1,6 +1,6 @@
 'use strict';
 
-//dependencies 
+//dependencies
 const express = require('express');
 
 const superagent = require('superagent');
@@ -26,13 +26,10 @@ app.post('/searches', findBook);
 
 
 
-//route handlers
+
 
 //==========================Route Handelers========================
 
-// function formPage(req, res) {
-//   res.render('pages/searches/show');
-// }
 
 function homeHandler(req, res) {
   res.status(200).render('pages/index');
@@ -41,53 +38,25 @@ function newSearch(req, res) {
   res.status(200).render('pages/searches/new.ejs');
 }
 
-
-
-// function findBook(req, res) {
-
-//   let url = 'https://www.googleapis.com/books/v1/volumes?q=quilting';
-
-
-//   if (req.body.search[0] === 'title') {
-//     url = `https://www.googleapis.com/books/v1/volumes?q=${req.body.search}`;
-
-//   } else if (req.body.search[0] === 'author') {
-
-//     url = `https://www.googleapis.com/books/v1/volumes?q=${req.body.search}`;
-
-//   }
-//   console.log(url);
-//   superagent.get(url)
-//     .then(data => {
-
-//       let books = data.body.items.map((value) => {
-//         return new Book(value);
-//       });
-//       res.render('pages/searches/show', { books: books });
-
-//       console.log(books);
-
-//     }).catch(error => console.log(error));
-// }
 function findBook(req, res) {
-  let url = 'https://www.googleapis.com/books/v1/volumes?q=quilting';
 
-  if (req.body.search === 'title') {
-    url = `https://www.googleapis.com/books/v1/volumes?q=${req.body.search}:${req.body.keyword}`;
 
-  } else if (req.body.search === 'author') {
+  let url = 'https://www.googleapis.com/books/v1/volumes?q=';
 
-    url = `https://www.googleapis.com/books/v1/volumes?q=${req.body.search}:${req.body.keyword}`;
+  if (req.body.search[1] === 'title') {url += `+intitle:${req.body.search[0]}`;}
 
-  }
+  if (req.body.search[1] === 'author') {url += `+inauthor:${req.body.search[0]}`;}
+
   superagent.get(url)
+
     .then(data => {
+      // const temp1 = data.body.items;
       console.log('data >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', data);
 
-      let books = data.body.items.map((value) => {
+      let books = data.body.items.map(value => {
         return new Book(value);
       });
-      res.render('pages/searches/show', { books: books });
+      res.render('pages/searches/show', { books:books});
 
 
 
@@ -106,15 +75,10 @@ function Book(data) {
   this.authors = data.volumeInfo.authors;
   this.title = data.volumeInfo.title;
   this.description = data.volumeInfo.description;
-  // this.img_url = data.volumeInfo.imageLinks? data.volumeInfo.imageLinks.smallThumbnail:`https://i.imgur.com/J5LVHEL.jpg`;
-  this.img_url = data.volumeInfo.imageLinks.smallThumbnail || `https://i.imgur.com/J5LVHEL.jpg`;
+  this.img_url = data.volumeInfo.imageLinks? data.volumeInfo.imageLinks.smallThumbnail:`https://i.imgur.com/J5LVHEL.jpg`;
 
 }
 
-//listen to the port
-// function handleError(res){
-// return res.status(500).render ('page/error');
-// }
 app.get('/*', (req, res) => res.status(404).send('this route does not exist'));
 
 
