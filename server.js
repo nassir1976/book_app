@@ -47,12 +47,14 @@ function findBook(req, res) {
 
   if (req.body.search[1] === 'author') {url += `+inauthor:${req.body.search[0]}`;}
 
+  //   url = `https://www.googleapis.com/books/v1/volumes?q=${req.body.search}:${req.body.keyword}`;
+
+  // }
   superagent.get(url)
 
     .then(data => {
-
+      // const temp1 = data.body.items;
       console.log('data >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', data);
-
 
       let books = data.body.items.map(value => {
         return new Book(value);
