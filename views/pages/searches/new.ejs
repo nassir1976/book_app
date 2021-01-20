@@ -1,34 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-  <link rel="stylesheet" href="../styles/base.css">
-
-<head>
-  <title>new Google Books Search</title>
-  <link rel="stylesheet" href="../styles/reset.css">
-  <link rel="stylesheet" href="../styles/base.css">
-  <link rel="stylesheet" href="../styles/layout.css">
-  <link rel="stylesheet" href="../styles/modules.css">
-</head>
+  
+  <head>
+    <title>new Google Books Search</title>
+    <link rel="stylesheet" href="../styles/base.css">
+  </head>
+    
 
 <body>
+
+  <header>
+    <div class="nav-bar">
+      <h1>Best Books!</h1>
+      <div id=hamburger>
+        <div class="ham-bar"></div>
+        <div class="ham-bar"></div>
+        <div class="ham-bar"></div>
+  
+      </div>
+    </div>
+    <div class="search-header">
+      <h2>Search by Title or Author</h2>
+    </div>
+  
+  </header>
+
   <main>
-    <h4>Search by Title or Author</h4>
-    <form action="/searches" method="POST">
-      <input type="text" name="search" placeholder="Enter a title or author" required>
-      <fieldset>
-        <label for="title">
-          <span>Title</span>
-          <input type="radio" name="search" value="title" required>
-        </label>
-      </fieldset>
-      <fieldset>
-        <label for="author">
-          <span>Author</span>
-          <input type="radio" name="search" value="author" required>
-        </label>
-      </fieldset>
-      <button type="submit">Search the Google Books API</button>
-    </form>
+    <section id="main-contain">
+      <form action="/searches" method="POST">
+        <input class="box-size" type="text" name="search" placeholder="Enter a title or author" required>
+        <fieldset>
+          <div id="selec" class="box-size">
+            <label for="title">
+              <span>Title</span>
+              <input type="radio" name="search" value="title" required>
+            </label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <div id="selec" class="box-size">
+            <label for="author">
+              <span>Author</span>
+              <input type="radio" name="search" value="author" required>
+            </label>
+
+          </div>
+        </fieldset>
+        <button class="box-size" type="submit">Search the Google Books API</button>
+      </form>
+
+    </section>
   </main>
 </body>
 

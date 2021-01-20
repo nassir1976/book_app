@@ -1,10 +1,18 @@
+
+.ham-bar {
+  width: 35px;
+  height: 5px;
+  background-color: white;
+  margin: 6px 0;
+}
+
+
+
 #main-contain{
   max-width: 1000px;
   margin: auto;
   
 }
-
-
 
 .nav-bar{
   padding: 20px 40px 20px 40px;
@@ -36,17 +44,15 @@
 
 .book-image{
   width: 425px;
-  height: 680px;
+  height: 650px;
   border: 10px solid white;
   margin-bottom: 25px;
   
 }
 
 
-
-
 .result-container{
-  border: 3px solid rgb(153, 153, 153);
+  border: 2px solid rgb(153, 153, 153);
   border-radius: 8px;
   padding: 40px 0 130px 0;
   margin: 40px auto 40px auto;
@@ -103,8 +109,4 @@ h2{
   
 }
 
-#hamburger{
-  height: auto;
- 
 
-}
