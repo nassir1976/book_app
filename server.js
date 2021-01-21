@@ -17,8 +17,8 @@ app.use(cors());
 
 
 const client = new pg.Client(process.env.DATABASE_URL);
-// client.connect();
-// client.on('error', err=>console.error(err));
+client.connect();
+client.on('error', err=>console.error(err));
 
 
 
@@ -32,6 +32,7 @@ app.get('/search', newSearch);
 // call back function
 app.post('/searches', findBook);
 
+app.get('/views/pages/books/detail/:value_id', getDetails );
 
 
 
@@ -39,16 +40,41 @@ app.post('/searches', findBook);
 
 //==========================Route Handelers========================
 
+// function homeHandler(req, res) {
+//   res.status(200).render('pages/index');
+// }
+function getDetails(req, res){
+  console.log('req.params>>>>>>>>>>', req.params);
+  const SQL = 'SELECT * FROM shelf WHERE id = $1'
+  const values = [req.params.value_id];
+  return client.query(SQL,values)
+    .then(results => {
+      // console.log(results.rows);
+      res.render('pages/books/detail', {books: results.rows});
+
+    });
+  
+}
 
 function homeHandler(req, res) {
-  res.status(200).render('pages/index');
+
+  const SQL =  'SELECT * FROM shelf;';
+  return client.query(SQL)
+    .then(results => {
+      // console.log(results.rows);
+      res.render('pages/index', {books: results.rows});
+
+    });
+
+  // res.status(200).render('pages/index');
 }
+
+
 function newSearch(req, res) {
   res.status(200).render('pages/searches/new.ejs');
 }
 
 function findBook(req, res) {
-
 
   let url = 'https://www.googleapis.com/books/v1/volumes?q=';
 
@@ -59,7 +85,7 @@ function findBook(req, res) {
   superagent.get(url)
 
     .then(data => {
-      console.log('data >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', data);
+      // console.log('data >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', data);
 
       let books = data.body.items.map(value => {
         return new Book(value);
@@ -86,7 +112,7 @@ app.get('/*', (req, res) => res.status(404).send('this route does not exist'));
 
 app.listen(PORT, () =>{
   console.log(`Now listening on port ${PORT}`);
-  // console.log(client.connectionParameters.database);
+  console.log(client.connectionParameters.database);
 });
 
 
