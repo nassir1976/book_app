@@ -3,12 +3,48 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link rel="stylesheet" href="../styles/base.css">
   <title>Book App</title>
+
+
 </head>
 <body>
-  <h1>Hello World 4</h1>
-  <a href="/search">link to main pages</a>
-  
+<header>
+  <div class="nav-bar">
+    <h1>Best Books!</h1>
+    <div id=hamburger>
+      <div class="ham-bar"></div>
+      <div class="ham-bar"></div>
+      <div class="ham-bar"></div>
+
+    </div>
+  </div>
+  <div class="search-header">
+    <a href=""><h2>Home</h2></a>
+    <a href=""><h2>Search the Google books api</h2></a>
+    
+  </div>
+
+</header>
+
+  <main>
+    <section id="main-contain">
+      <% books.forEach( value =>{ %>
+        <div class="result-container">
+          <div class= "book-contain">
+            <img class="book-image" src="<%=value.img_url%>" alt="<%=value.title%>">
+            <h3 id="book-title"><%=value.title%></h3>
+            <h4 id="book-author"><%=value.authors%></h4>
+            <p id="book-descrip"><%=value.description%></p>
+            <a href="/views/pages/books/detail/<%= value.id %>">View Details</a>
+          </div>
+        </div>
+      <% }) %>
+
+    </section>
+
+  </main>
+
 </body>
 </html>
