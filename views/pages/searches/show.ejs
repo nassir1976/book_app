@@ -38,13 +38,13 @@
             <h4 id="book-author"><%=value.authors%></h4>
             <p id="book-descrip"><%=value.description%></p>
 
-           <form action = "/books" method="POST">
+           <form action = "/books" method="post">
              <input type="hidden" name="author" value="<%= value.authors%>">
              <input type="hidden" name="title" value="<%= value.title%>">
              <input type="hidden" name="isbn" value="<%= value.isbn%>">
              <input type="hidden" name="img_url" value="<%= value.img_url%>">
              <input type="hidden" name="description" value="<%= value.description%>">
-             <button type="submit">ADD TO DATABASE</button>
+             <button type="submit">add to Database</button>
              </form>
           </div>
         </div>
