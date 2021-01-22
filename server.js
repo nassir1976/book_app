@@ -44,8 +44,8 @@ app.get('/views/pages/books/detail/:value_id', getDetails );
 //   res.status(200).render('pages/index');
 // }
 function getDetails(req, res){
-  console.log('req.params>>>>>>>>>>', req.params);
-  const SQL = 'SELECT * FROM shelf WHERE id = $1'
+  // console.log('req.params>>>>>>>>>>', req.params);
+  const SQL = 'SELECT * FROM shelf WHERE id = $1;';
   const values = [req.params.value_id];
   return client.query(SQL,values)
     .then(results => {
@@ -59,9 +59,12 @@ function getDetails(req, res){
 function homeHandler(req, res) {
 
   const SQL =  'SELECT * FROM shelf;';
+  
   return client.query(SQL)
     .then(results => {
-      // console.log(results.rows);
+      
+      console.log(results.rows);
+
       res.render('pages/index', {books: results.rows});
 
     });
@@ -99,7 +102,7 @@ function findBook(req, res) {
 //===================== Constructors ============================
 
 function Book(data) {
-  console.log(data);
+  // console.log(data);
   this.authors = data.volumeInfo.authors;
   this.title = data.volumeInfo.title;
   this.description = data.volumeInfo.description;
