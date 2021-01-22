@@ -29,7 +29,7 @@ app.set('view engine', 'ejs');
 // rende homepage
 app.get('/', homeHandler);
 // form
-app.get('/new', newSearch);
+app.get('/search', newSearch);
 
 // call back function/render/searches/show
 app.post('/searches', findBook);
@@ -67,10 +67,7 @@ app.post('/books', saveBook);
 
 // =========== render index page======
 function homeHandler(req, res) {
-
-
   const SQL = 'SELECT * FROM shelf;';
-
   return client.query(SQL)
     .then(results => {
 
@@ -83,6 +80,8 @@ function homeHandler(req, res) {
 function newSearch(req, res) {
   res.status(200).render('pages/searches/new.ejs');
 }
+
+//==============search book from API ==========
 
 function findBook(req, res) {
 
@@ -104,7 +103,7 @@ function findBook(req, res) {
     }).catch(error => console.log(error));
 
 }
-
+//==============detail function for every single book==========
 
 function getDetails(req, res) {
   console.log('req.params>>>>>>>>>>', req.params);
