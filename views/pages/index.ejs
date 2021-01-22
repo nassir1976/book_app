@@ -1,11 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <link rel="stylesheet" href="../styles/base.css">
-  <title>Book App</title>
+  <%- include('../layout/head') %>
 
 
 </head>
@@ -23,7 +19,8 @@
   <div class="search-header">
     <a href=""><h2>Home</h2></a>
     <a href=""><h2>Search the Google books api</h2></a>
-    
+    <h3> Book on shelf <%= books.length %></h3>
+
   </div>
 
 </header>
