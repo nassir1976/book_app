@@ -58,8 +58,10 @@ function getDetails(req, res){
     .then(results => {
       // console.log(results.rows);
       res.render('pages/books/detail', {books: results.rows});
+    
+    });
 
-
+  }
 
 // =========== render index page======
 function homeHandler(req, res) {
