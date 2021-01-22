@@ -29,16 +29,18 @@ app.set('view engine', 'ejs');
 // rende homepage
 app.get('/', homeHandler);
 // form
-app.get('/search', newSearch);
+app.get('/new', newSearch);
 
 // call back function/render/searches/show
 app.post('/searches', findBook);
 
 // render to detail
-app.get('/pages/books/detail/:value_id', getDetails);
+app.get('/detail/:id', getDetails);
 
 
 app.post('/books', saveBook);
+
+
 
 
 
@@ -50,31 +52,31 @@ app.post('/books', saveBook);
 //   res.status(200).render('pages/index');
 // }
 
-function getDetails(req, res){
-  // console.log('req.params>>>>>>>>>>', req.params);
-  const SQL = 'SELECT * FROM shelf WHERE id = $1;';
-  const values = [req.params.value_id];
-  return client.query(SQL,values)
-    .then(results => {
-      // console.log(results.rows);
-      res.render('pages/books/detail', {books: results.rows});
-    
-    });
+// function getDetails(req, res) {
+//   // console.log('req.params>>>>>>>>>>', req.params);
+//   const SQL = 'SELECT * FROM shelf WHERE id = $1;';
+//   const values = [req.params.value_id];
+//   return client.query(SQL, values)
+//     .then(results => {
+//       // console.log(results.rows);
+//       res.render('pages/books/detail', { books: results.rows });
 
-  }
+//     });
+
+// }
 
 // =========== render index page======
 function homeHandler(req, res) {
 
 
-  const SQL =  'SELECT * FROM shelf;';
-  
+  const SQL = 'SELECT * FROM shelf;';
+
   return client.query(SQL)
     .then(results => {
-      
+
       console.log(results.rows);
 
-      res.render('pages/index', {books: results.rows});
+      res.render('pages/index', { books: results.rows });
     });
 }
 
@@ -106,12 +108,12 @@ function findBook(req, res) {
 
 function getDetails(req, res) {
   console.log('req.params>>>>>>>>>>', req.params);
-  const SQL = 'SELECT * FROM shelf WHERE id = $1';
-  const values = [req.params.value_id];
-  return client.query(SQL, values)
+  const SQL = 'SELECT * FROM shelf WHERE id=$1;';
+  const values = [req.params.id];
+  client.query(SQL, values)
     .then(results => {
-      console.log(results.rows[0]);
-      res.render('pages/books/detail', { books: results.rows[0] });
+      console.log(">>>>>>>>>>", results.rows);
+      res.render('pages/books/detail', { book: results.rows[0] });
 
     });
 
@@ -123,9 +125,11 @@ function getDetails(req, res) {
 
 function saveBook(req, res) {
   let SQL = `INSERT INTO shelf(authors,title,img_url,isbn,description)VALUES($1,$2,$3,$4,$5)RETURNING*`;
-  const values = [req.body.authors, req.body.title, req.body.isbn, req.body.img_url, req.body.descripition];
+  console.log('.>>>>>>>>>', req.body);
+  const values = [req.body.authors, req.body.title, req.body.img_url, req.body.isbn, req.body.descripition];
   client.query(SQL, values)
     .then(results => {
+      console.log('........', results);
       res.render('pages/index', { books: results.rows });
     });
 
@@ -138,7 +142,7 @@ function Book(data) {
   this.title = data.volumeInfo.title;
   this.description = data.volumeInfo.description;
   this.img_url = data.volumeInfo.imageLinks ? data.volumeInfo.imageLinks.smallThumbnail : `https://i.imgur.com/J5LVHEL.jpg`;
-  this.isbn = data.volumeInfo.industryIdentifiers;
+  this.isbn = data.volumeInfo.industryIdentifiers[1];
 
 
 }

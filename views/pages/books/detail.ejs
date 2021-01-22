@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,49 +10,59 @@
 
 
 </head>
+
 <body>
-<header>
-  
-  <div class="nav-bar">
-    <h1>DETAIL VIEW </h1>
-    <div id=hamburger>
-      <div class="ham-bar"></div>
-      <div class="ham-bar"></div>
-      <div class="ham-bar"></div>
+  <header>
+
+    <div class="nav-bar">
+      <h1>DETAIL VIEW </h1>
+      <div id=hamburger>
+        <div class="ham-bar"></div>
+        <div class="ham-bar"></div>
+        <div class="ham-bar"></div>
+
+      </div>
+    </div>
+    <div class="search-header">
+      <h2>Search Results</h2>
+
 
     </div>
-  </div>
-  <div class="search-header">
-    <h2>Search Results</h2>
-  
-  
-  </div>
 
-</header>
+  </header>
 
   <main>
     <section id="main-contain">
-      <% books.forEach( value =>{ %>
-        <div class="result-container">
-          <div class= "book-contain">
-            <img class="book-image" src="<%=value.img_url%>" alt="<%=value.title%>">
-            <h3 id="book-title"><%=value.title%></h3>
-            <h4 id="book-author"><%=value.authors%></h4>
-            <p id="book-isbn"><%=value.isbn%></p>
-            <p id="book-descrip"><%=value.description%></p>
 
-            <p>SHELF</p>
+      <div class="result-container">
+        <div class="book-contain">
+          <img class="book-image" src="<%=book.img_url%>" alt="<%=book.title%>">
+          <h3 id="book-title">
+            <%=book.title%>
+          </h3>
+          <h4 id="book-author">
+            <%=book.authors%>
+          </h4>
+          <p id="book-isbn">
+            <%=book.isbn%>
+          </p>
+          <p id="book-descrip">
+            <%=book.description%>
+          </p>
 
-            
+          <p>SHELF</p>
 
-            
-          </div>
+
+
+
         </div>
-      <% }) %>
+      </div>
+
 
     </section>
 
   </main>
 
 </body>
+
 </html>
