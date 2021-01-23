@@ -1,6 +1,6 @@
 
 INSERT INTO shelf(
-  authors,
+  author,
   title,
   img_url,
   isbn,
@@ -8,9 +8,9 @@ INSERT INTO shelf(
 )VALUES ('jj','potter','https://i.imgur.com/J5LVHEL.jpg','ISBN_13 9780441013593', 'a very nice and interesting book to read');
 
 INSERT INTO shelf(
-  authors,
+  author,
   title,
   img_url,
   isbn,
-  description
+  description 
 )VALUES ('nassir','potter','https://i.imgur.com/J5LVHEL.jpg','ISBN_13 9780441013593', 'a very nice and interesting book to read');
