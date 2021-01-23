@@ -94,11 +94,12 @@ function findBook(req, res) {
   superagent.get(url)
 
     .then(data => {
-      console.log('data >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', data);
+      // console.log('data >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', data.body.items[0].volumeInfo);
 
       let books = data.body.items.map(value => {
         return new Book(value);
       });
+      console.log(books);
       res.render('pages/searches/show', { books: books });
     }).catch(error => console.log(error));
 
@@ -125,7 +126,7 @@ function getDetails(req, res) {
 function saveBook(req, res) {
   let SQL = `INSERT INTO shelf(authors,title,img_url,isbn,description)VALUES($1,$2,$3,$4,$5)RETURNING*`;
   console.log('.>>>>>>>>>', req.body);
-  const values = [req.body.authors, req.body.title, req.body.img_url, req.body.isbn, req.body.descripition];
+  const values = [req.body.author, req.body.title, req.body.img_url, req.body.isbn, req.body.description];
   client.query(SQL, values)
     .then(results => {
       console.log('........', results);
@@ -136,12 +137,12 @@ function saveBook(req, res) {
 //===================== Constructors ============================
 
 function Book(data) {
-  // console.log(data);
-  this.authors = data.volumeInfo.authors;
+  console.log('data', data);
+  this.author = data.volumeInfo.authors && data.volumeInfo.authors || 'unlisted';
   this.title = data.volumeInfo.title;
-  this.description = data.volumeInfo.description;
+  this.description = data.volumeInfo.description || 'not Avilable';
   this.img_url = data.volumeInfo.imageLinks ? data.volumeInfo.imageLinks.smallThumbnail : `https://i.imgur.com/J5LVHEL.jpg`;
-  this.isbn = data.volumeInfo.industryIdentifiers[1];
+  this.isbn = data.volumeInfo.industryIdentifiers[0].identifier;
 
 
 }

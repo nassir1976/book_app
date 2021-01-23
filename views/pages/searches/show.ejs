@@ -35,11 +35,11 @@
           <div class= "book-contain">
             <img class="book-image" src="<%=value.img_url%>" alt="<%=value.title%>">
             <h3 id="book-title"><%=value.title%></h3>
-            <h4 id="book-author"><%=value.authors%></h4>
+            <h4 id="book-author"><%=value.author%></h4>
             <p id="book-descrip"><%=value.description%></p>
 
            <form action = "/books" method="post">
-             <input type="hidden" name="author" value="<%= value.authors%>">
+             <input type="hidden" name="author" value="<%= value.author%>">
              <input type="hidden" name="title" value="<%= value.title%>">
              <input type="hidden" name="isbn" value="<%= value.isbn%>">
              <input type="hidden" name="img_url" value="<%= value.img_url%>">

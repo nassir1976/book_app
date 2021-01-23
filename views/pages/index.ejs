@@ -17,7 +17,11 @@
     </div>
   </div>
   <div class="search-header">
-    <a href="/search">search</a>
+    <h1>Saved Books!</h1>
+   <!-- <a href=""><h2>Search the Google books api</a>  -->
+<a href="Search the Google books api"></a>
+
+    <!-- <a href="/search">NEW SEARCH</a> -->
 
     <!-- <a href=""><h2>Search the Google books api</h2></a> -->
     <h3> Book on shelf <%= books.length %></h3>
@@ -33,7 +37,7 @@
           <div class= "book-contain">
             <img class="book-image" src="<%=value.img_url%>" alt="<%=value.title%>">
             <h3 id="book-title"><%=value.title%></h3>
-            <h4 id="book-author"><%=value.authors%></h4>
+            <h4 id="book-author"><%=value.author%></h4>
             <p id="book-descrip"><%=value.description%></p>
             <a href="/detail/<%= value.id %>">view detail</a>
            
