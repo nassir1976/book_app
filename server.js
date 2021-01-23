@@ -11,10 +11,13 @@ const cors = require('cors');
 //setting up the app
 const app = express();
 const PORT = process.env.PORT || 3000;
-app.use(express.static('./public'));
+// ========== application configration======
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
+// ===== public directory for css======
+
+app.use(express.static('./public'));
 
 const client = new pg.Client(process.env.DATABASE_URL);
 client.connect();
@@ -124,7 +127,7 @@ function getDetails(req, res) {
 // ============== add(save) to database==========
 
 function saveBook(req, res) {
-  let SQL = `INSERT INTO shelf(authors,title,img_url,isbn,description)VALUES($1,$2,$3,$4,$5)RETURNING*`;
+  let SQL = `INSERT INTO shelf(author,title,img_url,isbn,description)VALUES($1,$2,$3,$4,$5)RETURNING*`;
   console.log('.>>>>>>>>>', req.body);
   const values = [req.body.author, req.body.title, req.body.img_url, req.body.isbn, req.body.description];
   client.query(SQL, values)
@@ -143,8 +146,6 @@ function Book(data) {
   this.description = data.volumeInfo.description || 'not Avilable';
   this.img_url = data.volumeInfo.imageLinks ? data.volumeInfo.imageLinks.smallThumbnail : `https://i.imgur.com/J5LVHEL.jpg`;
   this.isbn = data.volumeInfo.industryIdentifiers[0].identifier;
-
-
 }
 
 app.get('/*', (req, res) => res.status(404).send('this route does not exist'));
