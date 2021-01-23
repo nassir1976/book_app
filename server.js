@@ -138,7 +138,7 @@ function saveBook(req, res) {
 
 function Book(data) {
   console.log('data', data);
-  this.author = data.volumeInfo.authors && data.volumeInfo.authors || 'unlisted';
+  this.author = data.volumeInfo.authors && data.volumeInfo.authors[0] || 'unlisted';
   this.title = data.volumeInfo.title;
   this.description = data.volumeInfo.description || 'not Avilable';
   this.img_url = data.volumeInfo.imageLinks ? data.volumeInfo.imageLinks.smallThumbnail : `https://i.imgur.com/J5LVHEL.jpg`;
