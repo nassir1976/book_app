@@ -46,28 +46,6 @@ app.post('/books', saveBook);
 
 
 
-
-
-
-//==========================Route Handelers========================
-
-// function homeHandler(req, res) {
-//   res.status(200).render('pages/index');
-// }
-
-// function getDetails(req, res) {
-//   // console.log('req.params>>>>>>>>>>', req.params);
-//   const SQL = 'SELECT * FROM shelf WHERE id = $1;';
-//   const values = [req.params.value_id];
-//   return client.query(SQL, values)
-//     .then(results => {
-//       // console.log(results.rows);
-//       res.render('pages/books/detail', { books: results.rows });
-
-//     });
-
-// }
-
 // =========== render index page======
 function homeHandler(req, res) {
   const SQL = 'SELECT * FROM shelf;';
