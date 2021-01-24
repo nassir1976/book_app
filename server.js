@@ -46,6 +46,8 @@ app.post('/books', saveBook);
 
 
 
+
+
 // =========== render index page======
 function homeHandler(req, res) {
   const SQL = 'SELECT * FROM shelf;';
@@ -87,18 +89,18 @@ function findBook(req, res) {
 }
 //==============detail function for every single book==========
 
-function getDetails(req, res) {
-  console.log('req.params>>>>>>>>>>', req.params);
-  const SQL = 'SELECT * FROM shelf WHERE id=$1;';
-  const values = [req.params.id];
-  client.query(SQL, values)
-    .then(results => {
-      console.log(">>>>>>>>>>", results.rows);
-      res.render('pages/books/detail', { book: results.rows[0] });
+// function updateDetails(req, res) {
+//   console.log('req.params>>>>>>>>>>', req.params);
+//   const SQL = 'UPDATE shelf SET  WHERE id=$1;';
+//   const values = [req.params.id];
+//   client.query(SQL, values)
+//     .then(results => {
+//       console.log(">>>>>>>>>>", results.rows);
+//       res.render('pages/books/detail', { book: results.rows[0] });
 
-    });
+//     });
 
-}
+// }
 
 
 
@@ -116,6 +118,20 @@ function saveBook(req, res) {
     });
 
 }
+function getDetails(req, res) {
+  console.log('req.params>>>>>>>>>>', req.params);
+  const SQL = 'SELECT * FROM shelf WHERE id=$1;';
+  const values = [req.params.id];
+  client.query(SQL, values)
+    .then(results => {
+      console.log(">>>>>>>>>>", results.rows);
+      res.render('pages/books/detail', { book: results.rows[0] });
+
+    });
+
+}
+
+
 //===================== Constructors ============================
 
 function Book(data) {
