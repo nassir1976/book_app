@@ -133,7 +133,7 @@ function saveBook(req, res) {
   client.query(SQL, values)
     .then(results => {
       console.log('........', results);
-      res.render('pages/index', { books: results.rows });
+      res.redirect('/');
     });
 
 }
@@ -145,7 +145,7 @@ function Book(data) {
   this.title = data.volumeInfo.title;
   this.description = data.volumeInfo.description || 'not Avilable';
   this.img_url = data.volumeInfo.imageLinks ? data.volumeInfo.imageLinks.smallThumbnail : `https://i.imgur.com/J5LVHEL.jpg`;
-  this.isbn = data.volumeInfo.industryIdentifiers[0].identifier;
+  this.isbn = data.volumeInfo.industryIdentifiers ? data.volumeInfo.industryIdentifiers[0].identifier : 'ISBN not found';
 }
 
 app.get('/*', (req, res) => res.status(404).send('this route does not exist'));
