@@ -9,6 +9,7 @@ const pg = require('pg');
 const cors = require('cors');
 const methodOverride = require('method-override');
 
+
 //setting up the app
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -142,7 +143,6 @@ function getDetails(req, res) {
 //       res.render('/pages/books/edit', { book: results.rows[0] });
 
 
-
 //     });
 
 // }
@@ -169,7 +169,7 @@ function Book(data) {
   this.description = data.volumeInfo.description || 'not Avilable';
   this.img_url = data.volumeInfo.imageLinks ? data.volumeInfo.imageLinks.smallThumbnail : `https://i.imgur.com/J5LVHEL.jpg`;
   this.isbn = data.volumeInfo.industryIdentifiers ? data.volumeInfo.industryIdentifiers[0].identifier : 'ISBN not found';
-  // this.isbn = data.volumeInfo.industryIdentifiers[0].identifier;
+
 }
 
 app.get('/*', (req, res) => res.status(404).send('this route does not exist'));
