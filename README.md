@@ -83,3 +83,23 @@ Actual time needed to complete: 7hrs
 
  Chance(TA), Brai(TA);
 
+ # lab -12 
+ ### overview 
+
+We are developing a basic full-stack application for a book list. Our book list will have a functionality to search books from Googlebook API and then add the selected books to our database and  render those selected  books from a SQL database. The user can able to update the details of the book or the user can remove it from his data base .
+ 
+
+#####  update the details of a book
+Estimate of time needed to complete: 1/2hr
+Start time: 8:30pm
+Finish time: 9:30
+Actual time needed to complete:1 hr
+
+##### remove books from my collection
+Estimate of time needed to complete: 1hr 
+Start time: 8:0pm
+Finish time: 8:30pm
+Actual time needed to complete: 45 Min
+
+### Credits and Collaborations
+
