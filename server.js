@@ -46,7 +46,7 @@ app.get('/detail/:id', getDetails);
 
 app.post('/books', saveBook);
 
-app.put('/update/:book_id',updateBookData);
+app.put('/update/:id',updateBookData);
 app.delete('/delete/:book_id', deleteBook);
 app.post('/populate/:book_id' ,popUpdateForm);
 
@@ -133,17 +133,17 @@ function getDetails(req, res) {
 }
 
 function updateBookData(req ,res) {
-
+  console.log('============'+ req.params.id);
+  let id = req.params.id;
   const SQL = 'UPDATE shelf SET author=$1, title=$2,isbn=$3,description=$4, img_url=$5 WHERE id=$6';
-  const values = [ req.body.author,req.body.title, req.body.isbn, req.body.description, req.body.img_url,req.params.id];
+  const values = [ req.body.author,req.body.title, req.body.isbn, req.body.description, req.body.img_url,id];
 
   client.query(SQL, values)
     .then(results => {
       console.log('................', results);
-      // res.render('/');
-      res.render('pages/books/edit', { book: results.rows[0] });
-
-
+      res.redirect('/');
+      // res.render('pages/books/edit', { book: results.rows[0] });
+      
     });
 
 }
