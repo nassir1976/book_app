@@ -3,11 +3,23 @@
 @import "modules.css";
 
 
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body{
   margin: 0;
   background-color: #aeaeae;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Roboto', sans-serif;
   color:rgb(75, 75, 75);
   font-size: 25px;
-  line-height: 40px;
+  line-height: 1.4;
 }
+
+a:link {
+  text-decoration: none;
+}
+
+
