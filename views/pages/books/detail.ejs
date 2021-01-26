@@ -24,8 +24,10 @@
       </div>
     </div>
     <div class="search-header">
-     <a href=""><h2>Search the Google books API </h2></a> 
-      
+      <a href="">
+        <h2>Search the Google books API </h2>
+      </a>
+
 
 
     </div>
@@ -51,9 +53,19 @@
             <%=book.description%>
           </p>
 
-          <p>SHELF</p>
-          
-<a href="/search">home</a>
+          <div>
+            
+            <form method="POST" action="/populate/<%=book.id %>">
+             <button>update details</button>
+            </form>
+            <form method="POST" action="/delete/<%=book.id %>?_method=DELETE">
+
+              <button>delete book</button>
+             </form>
+             
+
+
+          </div>
 
 
         </div>

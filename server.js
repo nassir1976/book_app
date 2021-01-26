@@ -7,6 +7,7 @@ const superagent = require('superagent');
 require('dotenv').config();
 const pg = require('pg');
 const cors = require('cors');
+const methodOverride = require('method-override');
 
 //setting up the app
 const app = express();
@@ -14,6 +15,7 @@ const PORT = process.env.PORT || 3000;
 // ========== application configration======
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+app.use(methodOverride('_method')); // allow to PUT and DELETE
 
 // ===== public directory for css======
 
@@ -43,10 +45,21 @@ app.get('/detail/:id', getDetails);
 
 app.post('/books', saveBook);
 
+// app.put('/update/:book_id',updateBookData);
+app.delete('/delete/:book_id', deleteBook);
+app.post('/populate/:book_id' ,popUpdateForm);
 
+function popUpdateForm(req, res){
 
+  const SQL = 'SELECT * FROM shelf WHERE id=$1;';
+  const values = [req.params.book_id];
+  client.query(SQL, values)
+    .then(results => {
+      console.log(">>>>>>>>>>", results.rows);
+      res.render('pages/books/edit', { book: results.rows[0] });
 
-
+    });
+}
 
 // =========== render index page======
 function homeHandler(req, res) {
@@ -87,20 +100,7 @@ function findBook(req, res) {
     }).catch(error => console.log(error));
 
 }
-//==============detail function for every single book==========
 
-// function updateDetails(req, res) {
-//   console.log('req.params>>>>>>>>>>', req.params);
-//   const SQL = 'UPDATE shelf SET  WHERE id=$1;';
-//   const values = [req.params.id];
-//   client.query(SQL, values)
-//     .then(results => {
-//       console.log(">>>>>>>>>>", results.rows);
-//       res.render('pages/books/detail', { book: results.rows[0] });
-
-//     });
-
-// }
 
 
 
@@ -131,6 +131,34 @@ function getDetails(req, res) {
 
 }
 
+// function updateBookData(res ,req) {
+
+//   const SQL = 'UPDATE shelf SET author=$1, title=$2,isbn=$3,description=$4, img_url=$5 , WHERE id=$6';
+//   const values = [ req.body.author,req.body.title, req.body.isbn, req.body.description, req.body.img_url];
+
+//   client.query(SQL, values)
+//     .then(results => {
+//       console.log('................', results);
+//       res.render('/pages/books/edit', { book: results.rows[0] });
+
+
+
+//     });
+
+// }
+
+function deleteBook(req, res){
+  console.log('request.params for DELETE >>', req.params);
+  const SQL = 'DELETE FROM shelf WHERE id = $1';
+  const params = [req.params.book_id];
+
+  client.query(SQL, params)
+    .then(results=> {
+      console.log(results.rowCount);
+      res.redirect('/');
+    });
+}
+
 
 //===================== Constructors ============================
 
@@ -140,7 +168,7 @@ function Book(data) {
   this.title = data.volumeInfo.title;
   this.description = data.volumeInfo.description || 'not Avilable';
   this.img_url = data.volumeInfo.imageLinks ? data.volumeInfo.imageLinks.smallThumbnail : `https://i.imgur.com/J5LVHEL.jpg`;
-  data.volumeInfo.industryIdentifiers ? data.volumeInfo.industryIdentifiers[0].identifier : 'ISBN not found';
+  this.isbn = data.volumeInfo.industryIdentifiers ? data.volumeInfo.industryIdentifiers[0].identifier : 'ISBN not found';
   // this.isbn = data.volumeInfo.industryIdentifiers[0].identifier;
 }
 
