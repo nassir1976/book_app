@@ -16,6 +16,9 @@ body{
   color:rgb(75, 75, 75);
   font-size: 25px;
   line-height: 1.4;
+  position: relative;
+  min-height: 100vh;
+  padding-bottom: 10%;
 }
 
 a:link {

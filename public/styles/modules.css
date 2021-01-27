@@ -121,6 +121,9 @@ h2{
 
 
 .footer-contain{
+  position:absolute;
+  left: 0;
+  bottom: 0;
   padding: 30px;
   width: 100%;
   background-color: black;
@@ -129,4 +132,8 @@ h2{
   align-items: center;
   justify-content: space-between;
   text-align: center;
+}
+
+.foot-logo{
+  height: 50px;
 }
