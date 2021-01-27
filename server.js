@@ -143,7 +143,7 @@ function updateBookData(req ,res) {
       console.log('................', results);
       res.redirect('/');
       // res.render('pages/books/edit', { book: results.rows[0] });
-      
+
     });
 
 }

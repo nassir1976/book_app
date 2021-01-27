@@ -26,6 +26,7 @@ main{
   background-color: black;
   color: white;
   cursor: pointer;
+  
 }
 
 
@@ -40,6 +41,7 @@ main{
   font-weight: bold;
   background-color: black;
   color: white;
+  
 }
 
 #detail{
@@ -77,5 +79,6 @@ main{
   background-color: black;
   color: white;
   text-align: center;
+  
 
 }
