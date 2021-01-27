@@ -46,23 +46,14 @@ app.get('/detail/:id', getDetails);
 
 app.post('/books', saveBook);
 
-app.put('/update/:id',updateBookData);
+app.put('/update/:book_id', updateBookData);
 app.delete('/delete/:book_id', deleteBook);
 app.post('/populate/:book_id' ,popUpdateForm);
 
-function popUpdateForm(req, res){
-
-  const SQL = 'SELECT * FROM shelf WHERE id=$1;';
-  const values = [req.params.book_id];
-  client.query(SQL, values)
-    .then(results => {
-      console.log(">>>>>>>>>>", results.rows);
-      res.render('pages/books/edit', { book: results.rows[0] });
-
-    });
-}
 
 // =========== render index page======
+
+
 function homeHandler(req, res) {
   const SQL = 'SELECT * FROM shelf;';
   return client.query(SQL)
@@ -73,6 +64,12 @@ function homeHandler(req, res) {
       res.render('pages/index', { books: results.rows });
     });
 }
+
+
+
+
+
+
 
 function newSearch(req, res) {
   res.status(200).render('pages/searches/new.ejs');
@@ -96,7 +93,7 @@ function findBook(req, res) {
       let books = data.body.items.map(value => {
         return new Book(value);
       });
-      console.log(books);
+      // console.log(books);
       res.render('pages/searches/show', { books: books });
     }).catch(error => console.log(error));
 
@@ -109,23 +106,23 @@ function findBook(req, res) {
 
 function saveBook(req, res) {
   let SQL = `INSERT INTO shelf(author,title,img_url,isbn,description)VALUES($1,$2,$3,$4,$5)RETURNING*`;
-  console.log('.>>>>>>>>>', req.body);
+  // console.log('.>>>>>>>>>', req.body);
   const values = [req.body.author, req.body.title, req.body.img_url, req.body.isbn, req.body.description];
   client.query(SQL, values)
     .then(results => {
-      console.log('........', results);
+      // console.log('........', results);
       // res.render('pages/index', { books: results.rows });
       res.redirect('/');
     });
 
 }
 function getDetails(req, res) {
-  console.log('req.params>>>>>>>>>>', req.params);
+  // console.log('req.params>>>>>>>>>>', req.params);
   const SQL = 'SELECT * FROM shelf WHERE id=$1;';
   const values = [req.params.id];
   client.query(SQL, values)
     .then(results => {
-      console.log(">>>>>>>>>>", results.rows);
+      // console.log(">>>>>>>>>>", results.rows);
       res.render('pages/books/detail', { book: results.rows[0] });
 
     });
@@ -137,16 +134,28 @@ function updateBookData(req ,res) {
   let id = req.params.id;
   const SQL = 'UPDATE shelf SET author=$1, title=$2,isbn=$3,description=$4, img_url=$5 WHERE id=$6';
   const values = [ req.body.author,req.body.title, req.body.isbn, req.body.description, req.body.img_url,id];
-
   client.query(SQL, values)
     .then(results => {
       console.log('................', results);
       res.redirect('/');
       // res.render('pages/books/edit', { book: results.rows[0] });
-      
     });
-
 }
+
+function popUpdateForm(req, res){
+
+  const SQL = 'SELECT * FROM shelf WHERE id=$1;';
+  const values = [req.params.book_id];
+  client.query(SQL, values)
+    .then(results => {
+      // console.log(">>>>>>>>>>", results.rows);
+      res.render('pages/books/edit', { book: results.rows[0] });
+
+    });
+}
+
+
+
 
 function deleteBook(req, res){
   console.log('request.params for DELETE >>', req.params);
@@ -155,7 +164,7 @@ function deleteBook(req, res){
 
   client.query(SQL, params)
     .then(results=> {
-      console.log(results.rowCount);
+      // console.log(results.rowCount);
       res.redirect('/');
     });
 }

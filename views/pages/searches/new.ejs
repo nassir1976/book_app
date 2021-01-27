@@ -9,18 +9,7 @@
 <body>
 
   <header>
-    <div class="nav-bar">
-      <h1>Best Books!</h1>
-      <div id=hamburger>
-        <div class="ham-bar"></div>
-        <div class="ham-bar"></div>
-        <div class="ham-bar"></div>
-
-      </div>
-    </div>
-    <div class="search-header">
-      <h2>Search by Title or Author</h2>
-    </div>
+    <%- include('../../layout/header') %>
 
   </header>
 
@@ -45,7 +34,7 @@
 
           </div>
         </fieldset>
-        <button class="box-size" type="submit">Search the Google Books API</button>
+        <button class="button-black" type="submit">Search the Google Books API</button>
       </form>
 
     </section>

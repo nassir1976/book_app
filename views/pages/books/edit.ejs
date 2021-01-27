@@ -9,24 +9,8 @@
 </head>
 <body>
 <header>
-  <div class="nav-bar">
-    <h1>Best Books!</h1>
-    <div id=hamburger>
-      <div class="ham-bar"></div>
-      <div class="ham-bar"></div>
-      <div class="ham-bar"></div>
-
-    </div>
-  </div>
-  <div class="search-header">
-    <h1>Saved Books!</h1>
-  
-<a href="Search the Google books api"></a>
-
-
-
-  </div>
-
+ 
+  <%- include('../../layout/header') %>
 </header>
 
   <main>
@@ -37,7 +21,7 @@
         <input  class="box-size" type="text" name="isbn" value="<%= book.isbn %>" />
         <input  class="box-size" type="text" name="img_url" value="<%= book.img_url %>" />
         <input  class="box-size" type="text" name="description" value="<%= book.description %>" />
-        <button id= update >Update Book</button>
+        <button class="button-black">Update Book</button>
       </form>
       
     </section>

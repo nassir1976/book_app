@@ -109,3 +109,26 @@ h2{
 }
 
 
+.button-black{
+  margin-top: 15px;
+  padding: 5px 20px 5px 20px;
+  width: 100%;
+  height: 60px;
+  border-radius: 6px;
+  background-color: black;
+  color: rgb(170, 170, 170);
+  cursor: pointer;
+}
+
+.grey-button{
+  margin-top: 35px;
+  padding: 5px 10px 5px 10px;
+  min-width: 80px;
+  width: 100%;
+  height: 60px;
+  border-radius: 6px;
+  background-color: rgb(145, 145, 145);
+  color: rgb(44, 44, 44);
+  cursor: pointer;
+
+}

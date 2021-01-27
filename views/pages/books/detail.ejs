@@ -10,24 +10,8 @@
 <body>
   <header>
 
-    <div class="nav-bar">
-      <h1>Best Books!</h1>
-      <div id=hamburger>
-        <div class="ham-bar"></div>
-        <div class="ham-bar"></div>
-        <div class="ham-bar"></div>
-
-      </div>
-    </div>
-    <div class="search-header">
-      <a href="">
-        <h2>Search the Google books API </h2>
-      </a>
-
-
-
-    </div>
-
+    
+    <%- include('../../layout/header') %>
   </header>
 
   <main>
@@ -35,7 +19,7 @@
 
       <div class="result-container">
         <div class="book-contain">
-          <img class="book-image" src="<%= book.img_url%>" alt="<%=book.title%>">
+          <img class="book-image" src="<%=book.img_url%>" alt="<%=book.title%>">
           <h3 id="book-title">
             <%=book.title%>
           </h3>
@@ -53,11 +37,11 @@
           <div id="two-but-contain">
             
             <form method="POST" action="/populate/<%=book.id %>">
-             <button id=update-btn -btn>update details</button>
+             <button class="button-black">update details</button>
             </form>
             <form method="POST" action="/delete/<%=book.id %>?_method=DELETE">
 
-              <button id=delete-btn >delete book</button>
+              <button class="button-black" >delete book</button>
              </form>
              
 

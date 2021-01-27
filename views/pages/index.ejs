@@ -7,35 +7,8 @@
 </head>
 <body>
 <header>
-  
-  <div class="nav-bar">
-    <a href="/"><h1>Best Books!</h1></a>
-    <div id=hamburger>
-      
-      <div class="menu-wrap">
-        <input type="checkbox" class="toggler">
-        <div class="hamburger"><div></div></div>
-        <div class="menu">
-          <div>
-            <div>
-              <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/search">Search</a></li>
-                <li><a href="#">Authors of Book-app</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-  <div class="search-header">
-    <h1><%= books.length %> Saved Books </h1>
-   
-
-  </div>
-
+  <%- include('../layout/header') %>
+ 
 </header>
 
   <main>
