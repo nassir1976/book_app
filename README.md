@@ -98,8 +98,16 @@ Actual time needed to complete:1 hr
 ##### remove books from my collection
 Estimate of time needed to complete: 1hr 
 Start time: 8:0pm
-Finish time: 8:30pm
-Actual time needed to complete: 45 Min
+Finish time: 10:30pm
+Actual time needed to complete: 2:30hr 
+##### styling the app
+Estimate of time needed to complete: 1hr 
+Start time: 12:00pm
+Finish time: 2:10pm
+Actual time needed to complete: 2:10hr 
+
 
 ### Credits and Collaborations
+
+Chance , Brai Nicco (TA'S)
 
