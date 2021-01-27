@@ -21,6 +21,7 @@ app.use(methodOverride('_method')); // allow to PUT and DELETE
 // ===== public directory for css======
 
 app.use(express.static('./public'));
+app.use(express.static('./public/styles'));
 
 const client = new pg.Client(process.env.DATABASE_URL);
 client.connect();

@@ -25,4 +25,11 @@ a:link {
   text-decoration: none;
 }
 
-
+div.logo-div{
+  height: 50px;
+  width: 50px;
+  background-image: url('github_logo.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
