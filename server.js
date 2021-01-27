@@ -61,7 +61,7 @@ function homeHandler(req, res) {
 
       console.log(results.rows);
 
-      res.render('pages/index', { books: results.rows });
+      res.render('pages/index', { book: results.rows });
     });
 }
 
@@ -94,7 +94,7 @@ function findBook(req, res) {
         return new Book(value);
       });
       // console.log(books);
-      res.render('pages/searches/show', { books: books });
+      res.render('pages/searches/show', { book: books });
     }).catch(error => console.log(error));
 
 }
