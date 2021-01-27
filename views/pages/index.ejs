@@ -10,30 +10,49 @@
   <div class="nav-bar">
     <a href="/"><h1>Best Books!</h1></a>
     <div id=hamburger>
-      <div class="ham-bar"></div>
-      <div class="ham-bar"></div>
-      <div class="ham-bar"></div>
-
+      
+      <div class="menu-wrap">
+        <input type="checkbox" class="toggler">
+        <div class="hamburger"><div></div></div>
+        <div class="menu">
+          <div>
+            <div>
+              <ul>
+                <li><a href="/">Book Shelf</a></li>
+                <li><a href="/search">Search</a></li>
+                <li><a href="#">Authors of Book-app</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+  
     </div>
   </div>
   <div class="search-header">
-    <h1><%= books.length %> Saved Books </h1>
-   
+  
+      <% if (book){%>
+        <h1><%= book.length %> Saved Books </h1>
+        <% } %>
 
   </div>
-
+ 
 </header>
 
   <main>
     <section id="main-contain">
-      <% books.forEach( value =>{ %>
+      <% book.forEach( value =>{ %>
         <div class="result-container">
           <div class= "book-contain">
             <img class="book-image" src="<%=value.img_url%>" alt="<%=value.title%>">
             <h3 id="book-title"><%=value.title%></h3>
             <h4 id="book-author"><%=value.author%></h4>
             <p id="book-descrip"><%=value.description%></p>
-            <a id= detail  href="/detail/<%= value.id %>">view detail</a>
+            <form method="GET" action="/detail/<%= value.id %>">
+
+              <button class="button-black" >View Details</button>
+            </form>
+            
            
             
           </div>
@@ -43,6 +62,9 @@
     </section>
 
   </main>
+  <footer>
+    <%- include('../layout/footer') %>
+  </footer>
 
 </body>
 </html>
