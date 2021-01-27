@@ -139,6 +139,8 @@ function updateBookData(req ,res) {
       console.log('Results................', results);
       res.redirect('/');
       // res.render('pages/books/edit', { book: results.rows[0] });
+
+
     });
 }
 

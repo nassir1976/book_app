@@ -16,12 +16,14 @@
   <main>
     <section id="main-contain">
       <form action="/update/<%= book.id %>?_method=PUT" method="POST">
+
         <input  class="box-size" type="text" name="author" value="<%= book.author %>" />
         <input  class="box-size" type="text" name="title" value="<%= book.title %>" />
         <input  class="box-size" type="text" name="isbn" value="<%= book.isbn %>" />
         <input  class="box-size" type="text" name="img_url" value="<%= book.img_url %>" />
         <input  class="box-size-descrip" type="text" name="description" value="<%= book.description %>" />
         <button class="button-black">update book</button>
+
       </form>
       
     </section>
