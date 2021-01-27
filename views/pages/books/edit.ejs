@@ -9,40 +9,29 @@
 </head>
 <body>
 <header>
-  <div class="nav-bar">
-    <h1>Best Books!</h1>
-    <div id=hamburger>
-      <div class="ham-bar"></div>
-      <div class="ham-bar"></div>
-      <div class="ham-bar"></div>
-
-    </div>
-  </div>
-  <div class="search-header">
-    <h1>Saved Books!</h1>
-  
-<a href="Search the Google books api"></a>
-
-
-
-  </div>
-
+ 
+  <%- include('../../layout/header') %>
 </header>
 
   <main>
     <section id="main-contain">
       <form action="/update/<%= book.id %>?_method=PUT" method="POST">
-        <input type="text" name="author" value="<%= book.author %>" />
-        <input type="text" name="title" value="<%= book.title %>" />
-        <input type="text" name="isbn" value="<%= book.isbn %>" />
-        <input type="text" name="img_url" value="<%= book.img_url %>" />
-        <input type="text" name="description" value="<%= book.description %>" />
-        <button>Update Book</button>
+
+        <input  class="box-size" type="text" name="author" value="<%= book.author %>" />
+        <input  class="box-size" type="text" name="title" value="<%= book.title %>" />
+        <input  class="box-size" type="text" name="isbn" value="<%= book.isbn %>" />
+        <input  class="box-size" type="text" name="img_url" value="<%= book.img_url %>" />
+        <input  class="box-size-descrip" type="text" name="description" value="<%= book.description %>" />
+        <button class="button-black">update book</button>
+
       </form>
       
     </section>
 
   </main>
+  <footer>
+    <%- include('../../layout/footer') %>
+  </footer>
 
 </body>
 </html>
