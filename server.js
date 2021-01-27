@@ -48,7 +48,7 @@ app.post('/books', saveBook);
 
 app.put('/update/:book_id', updateBookData);
 app.delete('/delete/:book_id', deleteBook);
-app.post('/populate/:book_id' ,popUpdateForm);
+app.post('/populate/:book_id', popUpdateForm);
 
 
 // =========== render index page======
@@ -130,13 +130,13 @@ function getDetails(req, res) {
 }
 
 function updateBookData(req ,res) {
-  console.log('============'+ req.params.id);
-  let id = req.params.id;
+  console.log('req.params.book_id ============'+ req.params.book_id);
+  let id = req.params.book_id;
   const SQL = 'UPDATE shelf SET author=$1, title=$2,isbn=$3,description=$4, img_url=$5 WHERE id=$6';
-  const values = [ req.body.author,req.body.title, req.body.isbn, req.body.description, req.body.img_url,id];
+  const values = [ req.body.author,req.body.title, req.body.isbn, req.body.description, req.body.img_url, id];
   client.query(SQL, values)
     .then(results => {
-      console.log('................', results);
+      console.log('Results................', results);
       res.redirect('/');
       // res.render('pages/books/edit', { book: results.rows[0] });
     });
@@ -173,7 +173,7 @@ function deleteBook(req, res){
 //===================== Constructors ============================
 
 function Book(data) {
-  console.log('data', data);
+  // console.log('data', data);
   this.author = data.volumeInfo.authors && data.volumeInfo.authors[0] || 'unlisted';
   this.title = data.volumeInfo.title;
   this.description = data.volumeInfo.description || 'not Avilable';

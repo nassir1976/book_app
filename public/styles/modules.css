@@ -75,28 +75,9 @@
   margin-bottom: 30px;
 }
 
-#book-descrip{
-  position: relative;
-  overflow: hidden;
-  padding-right: 1rem;
 
-}
 
-#book-descrip::before{
-  position: absolute;
-  content: "...";
-  inset-block-end: 0; /* "bottom" */
-  inset-inline-end: 0; /* "right" */
-}
 
-#book-desrip::after{
-  content: "";
-  position: absolute;
-  inset-inline-end: 0; /* "right" */
-  width: 1rem;
-  height: 1rem;
-  background: white;
-}
 
 h1{
   color: white;
@@ -136,4 +117,16 @@ h2{
   border: 0px;
   font-size: 22px;
 
+}
+
+
+.footer-contain{
+  padding: 30px;
+  width: 100%;
+  background-color: black;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
 }
