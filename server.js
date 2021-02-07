@@ -117,6 +117,11 @@ function saveBook(req, res) {
     });
 
 }
+// detail function and strewbary on index page  this is the form in detail page
+// <form method="POST" action="/populate/<%=book.id %>">
+// <button class="button-grey">update details</button>
+// </form>
+
 function getDetails(req, res) {
   // console.log('req.params>>>>>>>>>>', req.params);
   const SQL = 'SELECT * FROM shelf WHERE id=$1;';
@@ -129,7 +134,7 @@ function getDetails(req, res) {
     });
 
 }
-
+//  the strewabery on and the button update book on edit page redirect on index page
 function updateBookData(req ,res) {
   console.log('req.params.book_id ============'+ req.params.book_id);
   let id = req.params.book_id;
@@ -144,7 +149,7 @@ function updateBookData(req ,res) {
 
     });
 }
-
+// the form on edit page 
 function popUpdateForm(req, res){
 
   const SQL = 'SELECT * FROM shelf WHERE id=$1;';
